@@ -7,8 +7,10 @@ response = requests.get(url + '.json', headers = info)
 data = response.json()
 
 def test():
-    parse = data[0]['data']['children']
-    video_link = parse[0]['data']['secure_media']['reddit_video']['fallback_url'][:-16]
+    part = data[0]['data']['children']
+    video_link = part[0]['data']['secure_media']['reddit_video']['fallback_url'][:-16]
     print(video_link)
+    audio_link = video_link.split('_')[0] + '_audio.mp4'
+    print(audio_link)
     
 test()
