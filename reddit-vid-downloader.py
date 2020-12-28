@@ -7,8 +7,8 @@ response = requests.get(url + '.json', headers = info)
 data = response.json()
 
 def test():
-    for item in data: # item = first {'kind':}
-        for j in item['data']['children']: # should give us second {'kind':}
-            print(j['data']['secure_media']['reddit_video']['fallback_url'][:-16]) # video mp4 link
-            return 
+    parse = data[0]['data']['children']
+    video_link = parse[0]['data']['secure_media']['reddit_video']['fallback_url'][:-16]
+    print(video_link)
+    
 test()
