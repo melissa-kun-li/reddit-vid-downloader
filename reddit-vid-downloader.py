@@ -2,7 +2,6 @@ import json
 import requests
 import wget
 import subprocess
-# import ffmpeg
 import os
 import pathlib
 
@@ -23,5 +22,11 @@ def test():
 
     subprocess.run('ffmpeg -i DASH_1080.mp4 -i DASH_audio.mp4 -map 0:v -map 1:a -c copy reddit_vid.mp4', shell = True)
 
+    script_directory = pathlib.Path(__file__).parent.absolute()
+    print(script_directory)
+    DASH_video_file, DASH_audio_file = 'DASH_1080.mp4', 'DASH_audio.mp4'
+    path_video, path_audio = os.path.join(script_directory, DASH_video_file), os.path.join(script_directory, DASH_audio_file)
+    os.remove(path_video)
+    os.remove(path_audio)
 
 test()
