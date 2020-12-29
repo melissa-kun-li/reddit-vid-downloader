@@ -1,4 +1,3 @@
-import json
 import requests
 import wget
 import subprocess
@@ -10,7 +9,7 @@ info = {'user-agent':'vdownloader by /u/panaora'}
 response = requests.get(url + '.json', headers = info)
 data = response.json()
 
-def test():
+def reddit_vid_downloader():
     part = data[0]['data']['children']
     video_link = part[0]['data']['secure_media']['reddit_video']['fallback_url'][:-16]
     print(video_link)
@@ -29,4 +28,9 @@ def test():
     os.remove(path_video)
     os.remove(path_audio)
 
-test()
+    old_file = os.path.join(script_directory, 'reddit_vid.mp4')
+    title = part[0]['data']['title']
+    new_file = os.path.join(script_directory, title +'.mp4')
+    os.rename(old_file,new_file)
+
+reddit_vid_downloader()
