@@ -2,13 +2,20 @@ import requests
 import wget
 import subprocess
 import os
+import argparse
 
 from urllib.error import HTTPError
 
-def reddit_vid_downloader():
-    url = input('Please enter the Reddit link which has the Reddit hosted video: ')
+def main(): 
+    parser = argparse.ArgumentParser(description = 'Download Reddit videos to script directory.')
+    parser.add_argument('url', type = str, help = 'Link of Reddit hosted video')
+    args = parser.parse_args()
+
+    reddit_vid_downloader(args)
+
+def reddit_vid_downloader(args):
     info = {'user-agent':'vdownloader by /u/panaora'}
-    response = requests.get(url + '.json', headers = info)
+    response = requests.get(args.url + '.json', headers = info)
     data = response.json()
 
     part = data[0]['data']['children']
@@ -22,13 +29,14 @@ def reddit_vid_downloader():
     try:
         wget.download(audio_link)
     except HTTPError: # Reddit video has no audio so DASH_audio.mp4 DNE
-        os.rename(DASH_video, title + '.mp4') 
+        os.replace(DASH_video, title + '.mp4') 
         return
 
     os.rename(DASH_video, 'video.mp4')
     subprocess.run('ffmpeg -i video.mp4 -i DASH_audio.mp4 -map 0:v -map 1:a -c copy reddit_vid.mp4', shell = True)
     os.remove('video.mp4')
     os.remove('DASH_audio.mp4')
-    os.rename('reddit_vid.mp4', title + '.mp4')
+    os.replace('reddit_vid.mp4', title + '.mp4')
 
-reddit_vid_downloader()
+if __name__ == '__main__':
+    main()
