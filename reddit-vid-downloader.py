@@ -29,14 +29,14 @@ def reddit_vid_downloader(args):
     try:
         wget.download(audio_link)
     except HTTPError: # Reddit video has no audio so DASH_audio.mp4 DNE
-        os.rename(DASH_video, title + '.mp4') 
+        os.replace(DASH_video, title + '.mp4') 
         return
 
     os.rename(DASH_video, 'video.mp4')
     subprocess.run('ffmpeg -i video.mp4 -i DASH_audio.mp4 -map 0:v -map 1:a -c copy reddit_vid.mp4', shell = True)
     os.remove('video.mp4')
     os.remove('DASH_audio.mp4')
-    os.rename('reddit_vid.mp4', title + '.mp4')
+    os.replace('reddit_vid.mp4', title + '.mp4')
 
 if __name__ == '__main__':
     main()
