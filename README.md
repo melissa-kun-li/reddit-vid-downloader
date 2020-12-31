@@ -4,5 +4,31 @@ I created this from a desire to download Reddit hosted videos after realizing th
 
 WORKS FOR: Mac, Linux, Windows
 
-## How to use
-Coming soon
+Dependencies: 
+- [requests](https://github.com/psf/requests)
+- [urllib3](https://github.com/urllib3/urllib3)
+- [wget](https://www.gnu.org/software/wget/)
+- [ffmpeg](https://ffmpeg.org/)
+
+
+## How to run
+
+Clone this repository:
+
+``` git clone https://github.com/melissa-kun-li/reddit-vid-downloader.git ```
+
+Install dependencies using: 
+
+Python 2: ```pip install -r requirements.txt``` or Python 3: ```pip3 install -r requirements.txt``` 
+
+Open a terminal in the directory this repository was cloned to and run this command: 
+
+Python 2: ```python reddit-vid-downloader.py URL``` or Python 3: ```python3 reddit-vid-downloader.py URL``` 
+
+Note: Replace ```URL``` with the link to the post that has the Reddit hosted video! The video will be saved in the program directory. 
+
+If you'd like to test it out, check out this link for Reddit hosted videos: https://old.reddit.com/domain/v.redd.it/
+
+
+
+
