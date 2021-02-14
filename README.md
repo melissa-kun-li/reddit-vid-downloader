@@ -19,11 +19,11 @@ Clone this repository:
 
 Install dependencies using: 
 
-Python 2: ```pip install -r requirements.txt``` or Python 3: ```pip3 install -r requirements.txt``` 
+```pip3 install -r requirements.txt``` 
 
 Open a terminal in the directory this repository was cloned to and run this command: 
 
-Python 2: ```python reddit-vid-downloader.py URL``` or Python 3: ```python3 reddit-vid-downloader.py URL``` 
+ ```python3 reddit-vid-downloader.py URL``` 
 
 Note: Replace ```URL``` with the link to the post that has the Reddit hosted video! The video will be saved in the program directory. 
 
